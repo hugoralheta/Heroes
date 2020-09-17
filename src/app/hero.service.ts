@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+<<<<<<< HEAD
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -8,11 +9,22 @@ import { Hero } from './hero';
 import { MessageService } from './message.service';
 
 
+=======
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Hero } from './hero';
+import { HEROES } from './mock-heroes';
+import { MessageService } from './message.service';
+
+>>>>>>> 491cc7157bcbca360de5e68d9f01b137042c73a0
 @Injectable({ providedIn: 'root' })
 export class HeroService {
 
   private heroesUrl = 'api/heroes';  // URL to web api
+<<<<<<< HEAD
 
+=======
+>>>>>>> 491cc7157bcbca360de5e68d9f01b137042c73a0
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -30,6 +42,7 @@ export class HeroService {
       );
   }
 
+<<<<<<< HEAD
   /** GET hero by id. Return `undefined` when id not found */
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
@@ -44,6 +57,8 @@ export class HeroService {
       );
   }
 
+=======
+>>>>>>> 491cc7157bcbca360de5e68d9f01b137042c73a0
   /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
@@ -53,6 +68,7 @@ export class HeroService {
     );
   }
 
+<<<<<<< HEAD
   /* GET heroes whose name contains search term */
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {
@@ -69,6 +85,16 @@ export class HeroService {
 
   //////// Save methods //////////
 
+=======
+  /** PUT: update the hero on the server */
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
+
+>>>>>>> 491cc7157bcbca360de5e68d9f01b137042c73a0
   /** POST: add a new hero to the server */
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
@@ -88,6 +114,7 @@ export class HeroService {
     );
   }
 
+<<<<<<< HEAD
   /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
@@ -95,6 +122,12 @@ export class HeroService {
       catchError(this.handleError<any>('updateHero'))
     );
   }
+=======
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+  this.messageService.add(`HeroService: ${message}`);
+}
+>>>>>>> 491cc7157bcbca360de5e68d9f01b137042c73a0
 
   /**
    * Handle Http operation that failed.
@@ -114,10 +147,14 @@ export class HeroService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+<<<<<<< HEAD
   }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
+=======
+}
+>>>>>>> 491cc7157bcbca360de5e68d9f01b137042c73a0
 }
